@@ -1,0 +1,41 @@
+# Logs
+logs
+*.log
+./*.log
+npm-debug.log*
+s
+
+# Optional npm cache directory
+.npm
+/.npm/
+
+# Optional REPL history
+.idea
+.vscode
+.env
+/backend/.idea/
+/frontend/.idea/
+/backend/.vscode/
+/frontend/.vscode/
+
+# dependencies
+/node_modules
+/frontend/node_modules/
+/backend/node_modules/
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+./build
+/frontend/build/
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+/backend/.env
