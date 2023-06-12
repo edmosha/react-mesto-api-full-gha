@@ -1,4 +1,5 @@
 const BASE_URL = 'http://localhost:3001';
+// const BASE_URL = 'https://api.mesto.edmosha.nomoredomains.rocks';
 
 const checkResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(res.status);

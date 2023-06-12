@@ -53,9 +53,7 @@ function App() {
           navigate('/main', {replace: true});
           setIsPageLoading(false);
         })
-        .catch((err) => {
-          console.log(err)
-        });
+        .catch((err) => handleError(err));
     } else {
       navigate('/sign-in', {replace: true});
       setIsPageLoading(false);

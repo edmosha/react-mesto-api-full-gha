@@ -7,12 +7,11 @@ const signup = require('./signup');
 const DocumentNotFoundError = require('../errors/DocumentNotFoundError');
 const auth = require('../middlewares/auth');
 const errorsGlobal = require('../middlewares/errors');
-const cors = require('../middlewares/cors');
 const { requestLogger, errorLogger } = require('../middlewares/logger');
 
 router.use(requestLogger);
 
-router.use(cors);
+// router.use(cors);
 router.use('/signin', signin);
 router.use('/signup', signup);
 router.use(auth);

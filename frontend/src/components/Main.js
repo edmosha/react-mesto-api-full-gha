@@ -5,7 +5,6 @@ import Card from "./Card";
 function Main(props) {
   const { cards, onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, onCardDelete } = props;
   const currentUser = useContext(CurrentUserContext)
-  console.log(cards);
 
   return (
     <>
