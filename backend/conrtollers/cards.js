@@ -18,7 +18,7 @@ module.exports.createCard = (req, res, next) => {
     .then((card) => {
       Card.findById(card._id)
         .populate('owner')
-        .then((card) => res.send(card))
+        .then((cardData) => res.send(cardData));
     })
     .catch(next);
 };

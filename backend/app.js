@@ -15,7 +15,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 
 app.use(cors({
   origin: ['http://localhost:3000', 'https://api.mesto.edmosha.nomoredomains.rocks'],
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   maxAge: 3000,
 }));
