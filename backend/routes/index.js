@@ -11,7 +11,11 @@ const { requestLogger, errorLogger } = require('../middlewares/logger');
 
 router.use(requestLogger);
 
-// router.use(cors);
+router.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 router.use('/signin', signin);
 router.use('/signup', signup);
 router.use(auth);

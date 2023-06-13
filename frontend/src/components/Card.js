@@ -1,31 +1,35 @@
-import {useContext} from "react";
-import {CurrentUserContext} from "./contexts/CurrentUserContext";
+import { useContext } from 'react';
+import { CurrentUserContext } from './contexts/CurrentUserContext';
 
 function Card(props) {
-  const { card, onCardClick, onCardLike, onCardDelete } = props;
+  const {
+    card, onCardClick, onCardLike, onCardDelete,
+  } = props;
   const currentUser = useContext(CurrentUserContext);
-  
+
   const isOwn = card.owner._id === currentUser._id;
+  console.log(card.owner, currentUser);
+  console.log(isOwn);
   const isLiked = card.likes.some((user) => user._id === currentUser._id);
-  const likeButtonClass = `card__like-btn ${isLiked ? 'card__like-btn_focus' : ''}`
+  const likeButtonClass = `card__like-btn ${isLiked ? 'card__like-btn_focus' : ''}`;
 
   const handleClick = () => {
     onCardClick(card);
-  }
+  };
 
   const handleLikeClick = () => {
     onCardLike(card);
-  }
+  };
 
   const handleDeleteClick = () => {
     onCardDelete(card);
-  }
+  };
 
   return (
     <li className="card__item">
       <article className="card">
 
-        <img className="card__image" src={card.link} alt={card.name} onClick={ handleClick } />
+        <img className="card__image" src={card.link} alt={card.name} onClick={handleClick} />
         <div className="card__title-hidden-container">
           <h2 className="card__title">{card.name}</h2>
         </div>
@@ -35,8 +39,8 @@ function Card(props) {
             className={likeButtonClass}
             type="button"
             aria-label="лайк"
-            onClick={ handleLikeClick }>
-          </button>
+            onClick={handleLikeClick}
+          />
           <p className="card__like-counter">{card.likes.length}</p>
         </div>
 
@@ -45,13 +49,13 @@ function Card(props) {
             className="card__delete-btn"
             type="button"
             aria-label="удалить"
-            onClick={ handleDeleteClick }>
-          </button>
+            onClick={handleDeleteClick}
+          />
         )}
 
       </article>
     </li>
-  )
+  );
 }
 
 export default Card;

@@ -1,22 +1,25 @@
-import PopupWithForm from "./PopupWithForm";
-import {useContext, useEffect} from "react";
-import {CurrentUserContext} from "./contexts/CurrentUserContext";
-import useValidation from "./hooks/useValidation";
+import { useContext, useEffect } from 'react';
+import PopupWithForm from './PopupWithForm';
+import { CurrentUserContext } from './contexts/CurrentUserContext';
+import useValidation from './hooks/useValidation';
 
 function EditProfilePopup(props) {
-
-  const { isOpen, isLoading, onClose, onUpdateUser } = props;
+  const {
+    isOpen, isLoading, onClose, onUpdateUser,
+  } = props;
   const currentUser = useContext(CurrentUserContext);
 
-  const { values, errors, isValid, onChange,  checkError, resetValidation } = useValidation();
-  const submitButtonClass = `popup__save-btn ${!isValid ? 'popup__save-btn_inactive' : ''}`
+  const {
+    values, errors, isValid, onChange, checkError, resetValidation,
+  } = useValidation();
+  const submitButtonClass = `popup__save-btn ${!isValid ? 'popup__save-btn_inactive' : ''}`;
 
   useEffect(() => {
     resetValidation({
       name: currentUser.name,
-      description: currentUser.about
-    })
-  }, [isOpen, currentUser])
+      description: currentUser.about,
+    });
+  }, [isOpen, currentUser]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -25,22 +28,22 @@ function EditProfilePopup(props) {
       name: values.name,
       about: values.description,
     });
-  }
+  };
 
   return (
     <PopupWithForm
       name="edit-profile"
       title="Редактировать профиль"
       isOpen={isOpen}
-      onClose={ onClose }
-      onSubmit={ handleSubmit }
+      onClose={onClose}
+      onSubmit={handleSubmit}
     >
 
       <input
         className="popup__input"
         value={values.name || ''}
-        onChange={ onChange }
-        onBlur={ checkError }
+        onChange={onChange}
+        onBlur={checkError}
         id="name"
         type="text"
         name="name"
@@ -54,8 +57,8 @@ function EditProfilePopup(props) {
       <input
         className="popup__input"
         value={values.description || ''}
-        onChange={ onChange }
-        onBlur={ checkError }
+        onChange={onChange}
+        onBlur={checkError}
         id="description"
         type="text"
         name="description"
@@ -71,7 +74,7 @@ function EditProfilePopup(props) {
       </button>
 
     </PopupWithForm>
-  )
+  );
 }
 
 export default EditProfilePopup;

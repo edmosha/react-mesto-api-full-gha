@@ -11,68 +11,61 @@ class Api {
     return fetch(url, options).then(this._checkResponse);
   }
 
-  getUserInfo() { 
-    return this._request(
-      this._baseUrl + '/users/me', {
-        credentials: 'include',
-      })
+  getUserInfo() {
+    return this._request(`${this._baseUrl}/users/me`, {
+      credentials: 'include',
+    });
   }
 
   getInitialCards() {
-    return this._request(
-      this._baseUrl + '/cards', {
-        credentials: 'include',
-      })
+    return this._request(`${this._baseUrl}/cards`, {
+      credentials: 'include',
+    });
   }
 
   setUserInfo(name, about) {
-    return this._request(
-      this._baseUrl + '/users/me', {
-        method: 'PATCH',
-        credentials: 'include',
-        headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          name: name,
-          about: about
-        })
-      })
+    return this._request(`${this._baseUrl}/users/me`, {
+      method: 'PATCH',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name,
+        about,
+      }),
+    });
   }
 
   postNewCard(title, image) {
-    return this._request(
-      this._baseUrl + '/cards', {
-        method: 'POST',
-        credentials: 'include',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          name: title,
-          link: image
-        })
-      })
+    return this._request(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: title,
+        link: image,
+      }),
+    });
   }
 
   deleteCard(id) {
-    return this._request(
-      this._baseUrl + '/cards/' + id, {
-        credentials: 'include',
-        method: 'DELETE',
-      })
+    return this._request(`${this._baseUrl}/cards/${id}`, {
+      credentials: 'include',
+      method: 'DELETE',
+    });
   }
 
   setLike(cardId) {
-    return this._request(
-      this._baseUrl + '/cards/' + cardId + '/likes', {
-        credentials: 'include',
-        method: 'PUT',
-      })
+    return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
+      credentials: 'include',
+      method: 'PUT',
+    });
   }
 
   removeLike(cardId) {
-    return this._request(
-      this._baseUrl + '/cards/' + cardId + '/likes', {
-        credentials: 'include',
-        method: 'DELETE',
-      })
+    return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
+      credentials: 'include',
+      method: 'DELETE',
+    });
   }
 
   changeLikeCardStatus(cardId, isLiked) {
@@ -80,21 +73,20 @@ class Api {
   }
 
   updateAvatar(avatar) {
-    return this._request(
-      this._baseUrl + '/users/me/avatar', {
-        method: 'PATCH',
-        credentials: 'include',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          avatar: avatar
-        })
-      })
+    return this._request(`${this._baseUrl}/users/me/avatar`, {
+      method: 'PATCH',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        avatar,
+      }),
+    });
   }
 }
 
 const api = new Api({
-  baseUrl: 'http://localhost:3001',
-  // baseUrl: 'https://api.mesto.edmosha.nomoredomains.rocks',
-})
+  // baseUrl: 'http://localhost:3001',
+  baseUrl: 'https://api.mesto.edmosha.nomoredomains.rocks',
+});
 
 export default api;

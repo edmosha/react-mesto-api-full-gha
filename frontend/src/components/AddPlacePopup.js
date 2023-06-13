@@ -1,26 +1,29 @@
-import PopupWithForm from "./PopupWithForm";
-import useValidation from "./hooks/useValidation";
-import {useEffect} from "react";
+import { useEffect } from 'react';
+import PopupWithForm from './PopupWithForm';
+import useValidation from './hooks/useValidation';
 
 function AddPlacePopup(props) {
+  const {
+    isOpen, isLoading, onClose, onAddPlace,
+  } = props;
+  const {
+    values, errors, isValid, onChange, checkError, resetValidation,
+  } = useValidation();
 
-  const { isOpen, isLoading, onClose, onAddPlace } = props;
-  const { values, errors, isValid, onChange, checkError, resetValidation } = useValidation();
-
-  const submitButtonClass = `popup__save-btn ${!isValid ? 'popup__save-btn_inactive' : ''}`
+  const submitButtonClass = `popup__save-btn ${!isValid ? 'popup__save-btn_inactive' : ''}`;
 
   useEffect(() => {
-    resetValidation()
-  }, [isOpen])
+    resetValidation();
+  }, [isOpen]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
     onAddPlace({
       title: values.title,
-      image: values.image
+      image: values.image,
     });
-  }
+  };
 
   return (
     <PopupWithForm
@@ -28,14 +31,14 @@ function AddPlacePopup(props) {
       title="Новое место"
       isOpen={isOpen}
       onClose={onClose}
-      onSubmit={ handleSubmit }
+      onSubmit={handleSubmit}
     >
 
       <input
         className="popup__input"
         value={values.title || ''}
-        onChange={ onChange }
-        onBlur={ checkError }
+        onChange={onChange}
+        onBlur={checkError}
         id="card-name"
         type="text"
         name="title"
@@ -49,8 +52,8 @@ function AddPlacePopup(props) {
       <input
         className="popup__input"
         value={values.image || ''}
-        onChange={ onChange }
-        onBlur={ checkError }
+        onChange={onChange}
+        onBlur={checkError}
         id="link"
         type="url"
         name="image"
@@ -63,7 +66,7 @@ function AddPlacePopup(props) {
         {isLoading ? 'Создание...' : 'Создать'}
       </button>
     </PopupWithForm>
-  )
+  );
 }
 
 export default AddPlacePopup;
