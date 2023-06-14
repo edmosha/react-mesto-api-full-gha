@@ -52,13 +52,15 @@ module.exports.login = (req, res, next) => {
         NODE_ENV === 'production' ? JWT_SECRET : 'secret-key',
         { expiresIn: '7d' },
       );
-      return res
-        .cookie('jwt', token, {
-          maxAge: 3600000 * 24 * 7,
-          httpOnly: true,
-          sameSite: true,
-        })
-        .send(user.toJSON());
+
+      return User.findById(user._id)
+        .then((userData) => res
+          .cookie('jwt', token, {
+            maxAge: 3600000 * 24 * 7,
+            httpOnly: true,
+            sameSite: true,
+          })
+          .send(userData.toJSON()));
     })
     .catch(next);
 };
