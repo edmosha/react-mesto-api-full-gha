@@ -4,9 +4,9 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose').default;
 const bodyParser = require('body-parser');
+const helmet = require('helmet');
 const index = require('./routes/index');
 const limiter = require('./utils/rateLimite');
-const helmet = require('helmet');
 
 const app = express();
 const { PORT = 3000 } = process.env;

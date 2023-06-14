@@ -6,6 +6,6 @@ const limiter = rateLimit({
   message: 'You have exceeded the 100 requests in 2 hours limit!',
   standardHeaders: true,
   legacyHeaders: false,
-})
+});
 
 module.exports = limiter;
